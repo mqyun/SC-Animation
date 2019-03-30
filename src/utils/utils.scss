@@ -1,0 +1,29 @@
+@function rem($px) {
+  @return ($px / 100)+rem
+}
+
+@mixin absolute-center($width, $height) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: rem(-($height / 2));
+  margin-left: rem(-($width / 2));
+  width: rem($width);
+  height: rem($height);
+}
+
+@mixin animate-merge($name, $otop, $oleft, $time:2s) {
+  animation: $name $time;
+  top: rem(100);
+  left: rem((344+15)*2);
+  @keyframes #{$name} {
+    0% {
+      top: $otop;
+      left: $oleft;
+    }
+    100% {
+      top: rem(100);
+      left: rem((344+15)*2);
+    }
+  }
+}
