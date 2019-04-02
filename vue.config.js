@@ -14,8 +14,8 @@ module.exports = {
     https: false,
     open: true,
     proxy: {
-      'wx://api.com': {
-        target: 'wx://api.com',
+      'ws://172.16.10.133:8080/websocket': {
+        target: 'ws://172.16.10.2:8080/websocket',
         ws: true
       }
     }

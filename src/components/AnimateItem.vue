@@ -1,6 +1,5 @@
 <template>
   <div :class="['item-box', index]" ref="itemBox">
-    <button class="btn start" @click="start">start</button>
     <div :class="['top-container', {rotate: rotate}]" ref="itemContainer">
       <div class="line-one"></div>
       <div class="line-two"></div>
@@ -106,7 +105,7 @@ export default {
           } else {
             $(this.$refs['logoBox']).remove();
           }
-        }, 9400);
+        }, 4600);
       }
     }
   },
@@ -120,22 +119,6 @@ export default {
   position: absolute;
   bottom: 0;
   width: rem(344);
-  .btn {
-    position: absolute;
-    left: 50%;
-    margin-left: rem(-50);
-    width: rem(100);
-    height: rem(40);
-    border-radius: rem(10);
-    cursor: pointer;
-    outline: none;
-    &.start {
-      top: rem(-300);
-    }
-    &.down {
-      top: rem(-250);
-    }
-  }
   &.one {
     top: 0;
     left: 0;

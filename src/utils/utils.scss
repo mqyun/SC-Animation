@@ -12,14 +12,23 @@
   height: rem($height);
 }
 
-@mixin animate-merge($name, $otop, $oleft, $time:2s) {
+@mixin animate-merge($name, $otop, $oleft, $deviation, $time:1.2s) {
   animation: $name $time;
   top: rem(100);
   left: rem((344+15)*2);
+  animation-timing-function: ease-in;
   @keyframes #{$name} {
     0% {
-      top: $otop;
-      left: $oleft;
+      top: rem($otop);
+      left: rem($oleft);
+    }
+    80% {
+      top: rem(100);
+      left: rem((344+15)*2);
+    }
+    90% {
+      top: (100 - $otop) / ((344+15)*2 - $oleft) * ((344+15)*2 + $deviation);
+      left: rem((344+15)*2 + $deviation);
     }
     100% {
       top: rem(100);

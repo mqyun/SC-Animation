@@ -1,15 +1,17 @@
 <template>
   <div class="container">
     <div class="title"></div>
-    <div class="nav-item one" @click="checkNav(1)"></div>
-    <div class="nav-item two" @click="checkNav(2)"></div>
-    <div class="nav-item three" @click="checkNav(3)"></div>
-    <div class="nav-item four" @click="checkNav(4)"></div>
-    <div class="nav-item five" @click="checkNav(5)"></div>
+    <div class="nav-item one" @click="checkNav('one')"></div>
+    <div class="nav-item two" @click="checkNav('two')"></div>
+    <div class="nav-item three" @click="checkNav('three')"></div>
+    <div class="nav-item four" @click="checkNav('four')"></div>
+    <div class="nav-item five" @click="checkNav('five')"></div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'Mobile',
 
@@ -21,6 +23,10 @@ export default {
       }, false);
     }
   },
+
+  computed: {
+    ...mapState(['channel', 'ws'])
+  },
   
   methods: {
     setHtmlFontSize() {
@@ -29,22 +35,21 @@ export default {
     },
 
     checkNav(index) {
+      const channel = this.channel;
+      this.ws.send(JSON.stringify({
+        channel: this.channel,
+        type: 'audio',
+        data: {
+          index: 1
+        }
+      }));
       this.$router.push({
         path: 'mobileDetail',
         query: {
-          index
+          index,
+          channel
         }
       });
-    },
-
-    // 开始按住
-    touchStart() {
-      console.log('start');
-    },
-
-    // 结束按住
-    touchEnd() {
-      console.log('end');
     }
   }
 }
